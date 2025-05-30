@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Biblioteca</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Sistema de Gestión de Biblioteca</h1>
+        </header>
+
+        <main>
+            <section class="section">
+                <h2>🔍 Buscar Libros</h2>
+                <div class="search-container">
+                    <div class="search-form">
+                        <input type="text" id="searchTitulo" placeholder="Título">
+                        <input type="text" id="searchAutor" placeholder="Autor">
+                        <input type="text" id="searchCategoria" placeholder="Categoría">
+                        <select id="searchEstado">
+                            <option value="">Cualquier estado</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="Prestado">Prestado</option>
+                        </select>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="exclusivo">
+                            <span class="checkmark"></span>
+                            Búsqueda exclusiva (todas las condiciones)
+                        </label>
+                        <button onclick="buscarLibros()" class="btn btn-primary">Buscar</button>
+                        <button onclick="obtenerTodosLosLibros()" class="btn btn-secondary">Ver Todos</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>➕ Agregar Nuevo Libro</h2>
+                <form id="formAgregar" class="book-form">
+                    <div class="form-row">
+                        <input type="number" id="nuevoId" placeholder="ID" required>
+                        <input type="text" id="nuevoTitulo" placeholder="Título" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" id="nuevoAutor" placeholder="Autor" required>
+                        <input type="text" id="nuevoIsbn" placeholder="ISBN" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" id="nuevaCategoria" placeholder="Categoría" required>
+                        <select id="nuevoEstado" required>
+                            <option value="">Seleccionar estado</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="Prestado">Prestado</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Agregar Libro</button>
+                </form>
+            </section>
+
+            <section class="section">
+                <h2>📖 Libros</h2>
+                <div id="librosContainer" class="books-container">
+                    <!-- Los libros se cargarán aquí -->
+                </div>
+            </section>
+        </main>
+
+        <div id="notification" class="notification"></div>
+    </div>
+
+    <!-- Modal para editar libro -->
+    <div id="modalEditar" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✏️ Editar Libro</h3>
+                <span class="close" onclick="cerrarModal()">&times;</span>
+            </div>
+            <form id="formEditar" class="book-form">
+                <input type="hidden" id="editarId">
+                <div class="form-row">
+                    <input type="text" id="editarTitulo" placeholder="Título" required>
+                    <input type="text" id="editarAutor" placeholder="Autor" required>
+                </div>
+                <div class="form-row">
+                    <input type="text" id="editarIsbn" placeholder="ISBN" required>
+                    <input type="text" id="editarCategoria" placeholder="Categoría" required>
+                </div>
+                <div class="form-row">
+                    <select id="editarEstado" required>
+                        <option value="Disponible">Disponible</option>
+                        <option value="Prestado">Prestado</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    <button type="button" onclick="cerrarModal()" class="btn btn-secondary">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
